@@ -19,4 +19,7 @@ class Settings:
         self.bullets_allowed = 3
 
         # Aniel settings. 
-        self.alien_speed = 1.0
+        self.alien_speed = 0.5
+        self.fleet_drop_speed = 5
+        # fleet_direction of 1 repressents right; -1 represents left.
+        self.fleet_direction = 1
