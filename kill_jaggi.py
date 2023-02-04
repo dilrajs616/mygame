@@ -38,7 +38,7 @@ class AlienInvasion:
         self._create_fleet()
 
         #Make the play button.
-        self.play_button = Button(self, "Play")
+        self.play_button = Button(self, "Kill Jaggi")
         self.instructions = Instructions(self, "Press Space to shoot."" Press Q to quit."" Press arrow keys to move.")
 
     def run_game(self):
@@ -115,15 +115,27 @@ class AlienInvasion:
         #     self.ship.moving_down = False
 
     def _fire_bullet(self):
-        '''Create a new bullet and add it to the bullets group.'''
+        '''Create five new bullets and add them to the bullets group.'''
         if len(self.bullets) < self.settings.bullets_allowed:
-            new_bullet = Bullet(self)
-            self.bullets.add(new_bullet)
+            for i in range(5):
+                new_bullet = Bullet(self)
+                self.bullets.add(new_bullet)
 
     def _update_bullets(self):
         """Update position of bullets and get rid of old bullets."""
+        import math
         # Update bullet positions.
-        self.bullets.update()
+        for i, bullet in enumerate(self.bullets):
+            bullet.x = float(bullet.rect.x)
+            bullet.y = float(bullet.rect.y)
+            # Calculate the x direction based on the bullet's position in the group.
+            x_dir = (2 * (i + 1) / (len(self.bullets) + 1)) - 1
+            # Update the decimal position of the bullet.
+            bullet.x += self.settings.bullet_speed * x_dir
+            bullet.y -= self.settings.bullet_speed
+            # Update the rect position.
+            bullet.rect.y = bullet.y
+            bullet.rect.x = bullet.x
 
         # Get rid of bullets that have disappeared.
         for bullet in self.bullets.copy():
