@@ -1,0 +1,13 @@
+[core]
+	repositoryformatversion = 0
+	filemode = false
+	bare = false
+	logallrefupdates = true
+	symlinks = false
+	ignorecase = true
+[remote "mygame"]
+	url = https://github.com/dilrajs616/mygame.git
+	fetch = +refs/heads/*:refs/remotes/mygame/*
+[branch "master"]
+	remote = mygame
+	merge = refs/heads/master
